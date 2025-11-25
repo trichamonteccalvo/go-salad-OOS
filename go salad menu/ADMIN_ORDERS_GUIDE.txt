@@ -1,0 +1,269 @@
+✅ ADMIN ORDER MONITORING FEATURE - COMPLETE
+
+═══════════════════════════════════════════════════════════
+
+OVERVIEW:
+═════════
+
+Admin can now view all orders created by staff and customers, including:
+✓ Order ID, customer information, items ordered
+✓ Order status (Pending, Preparing, Ready, Delivery, Completed, Cancelled)
+✓ Order priority and date
+✓ Detailed order information including delivery address
+✓ Full item details with quantities and prices
+✓ Ability to update order status and add notes
+
+═══════════════════════════════════════════════════════════
+
+HOW TO ACCESS:
+════════════════
+
+1. Login to admin account
+2. Click "Orders" in the left sidebar
+3. This opens admin-orders.html with all orders
+
+═══════════════════════════════════════════════════════════
+
+FEATURES:
+═════════
+
+1. VIEW ALL ORDERS
+   - Table shows all orders created in the system
+   - Displays: Order ID, Customer, Items, Total, Status, Priority, Date
+
+2. SEARCH ORDERS
+   - Search by Order ID or Customer name
+   - Type in "Search by Order ID or Customer name..." field
+   - Results filter in real-time
+
+3. FILTER BY STATUS
+   - Dropdown: All Status, Pending, Preparing, Ready for Pickup, 
+     Out for Delivery, Completed, Cancelled
+   - Automatically filters displayed orders
+
+4. FILTER BY PRIORITY
+   - Dropdown: All Priorities, Low, Normal, High
+   - Works with status filters for combined filtering
+
+5. VIEW DETAILED ORDER INFORMATION
+   - Click "View" button on any order
+   - Modal opens showing:
+     • Order ID and date
+     • Complete customer information
+     • All items ordered with quantities and prices
+     • Delivery address
+     • Order total amount
+     • Priority and status
+     • Any notes attached
+
+6. UPDATE ORDER STATUS
+   - Click "Edit" button on any order
+   - Modal opens with:
+     • Current order ID (read-only)
+     • Status dropdown to select new status
+     • Text area to add or edit notes
+   - Click "Update Status" to save changes
+   - Change is saved immediately to database
+   - Success notification appears
+   - Table refreshes automatically
+
+7. REFRESH ORDERS
+   - Click "Refresh" button to reload latest orders from database
+   - Useful if orders are being added in real-time
+
+═══════════════════════════════════════════════════════════
+
+HOW IT WORKS BEHIND THE SCENES:
+════════════════════════════════
+
+1. ADMIN LOGIN:
+   - Admin logs in → session saved in localStorage
+   → admin-orders.js checks for session on page load
+
+2. LOAD ORDERS:
+   - Orders retrieved from localStorage (freshgreens_orders)
+   - Staff orders added through staff-orders.html
+   - All orders displayed in the table
+
+3. ORDER DATA STRUCTURE:
+   {
+     id: "ORD123456",
+     userId: "user1",
+     items: [
+       { product: { name: "Salad", price: 189 }, quantity: 1 }
+     ],
+     status: "pending",
+     priority: "normal",
+     total: 189,
+     createdAt: "2024-11-24T10:30:00Z",
+     updatedAt: "2024-11-24T10:30:00Z",
+     deliveryAddress: "123 Main St",
+     phone: "+63912345678",
+     notes: "Extra dressing"
+   }
+
+4. VIEWING ORDERS:
+   - Admin clicks "View" → function retrieves order from allOrders
+   → displays formatted details in modal
+
+5. UPDATING STATUS:
+   - Admin selects new status and notes
+   - Form submitted → function finds order and updates
+   → saved to localStorage → table refreshes
+
+═══════════════════════════════════════════════════════════
+
+WORKFLOW EXAMPLE:
+═════════════════
+
+SCENARIO: Customer places order through staff
+
+1. Staff member receives order on staff-orders.html
+   └─ Order saved to localStorage (freshgreens_orders)
+
+2. Admin logs in to admin.html
+   └─ Clicks "Orders" link
+
+3. admin-orders.html loads with admin-orders.js
+   └─ Script retrieves all orders from localStorage
+   └─ Displays in table with search/filter options
+
+4. Admin searches for customer order
+   └─ Types customer name in search box
+   └─ Table filters to show matching orders
+
+5. Admin clicks "View" on order
+   └─ Modal opens showing all order details
+   └─ Customer info, items, delivery address, total
+
+6. Admin needs to change order status to "preparing"
+   └─ Clicks "Edit" button
+   └─ Modal opens with status dropdown
+   └─ Selects "Preparing"
+   └─ Adds note: "Starting to prepare order"
+   └─ Clicks "Update Status"
+   └─ Order updated in database
+   └─ Success notification appears
+   └─ Table refreshes automatically
+
+7. Customer can see updated status on track-order.html
+   └─ If implementation includes real-time updates
+
+═══════════════════════════════════════════════════════════
+
+FILES INVOLVED:
+════════════════
+
+CREATED:
+✓ admin-orders.js - Complete orders management functionality
+
+MODIFIED:
+✓ admin-orders.html - Updated to load admin-orders.js
+
+USED BY:
+✓ staff-orders.html - Where orders are initially created
+✓ freshgreens_orders (localStorage) - Where data is stored
+
+═══════════════════════════════════════════════════════════
+
+TESTING:
+═════════
+
+TEST 1: View Orders
+────────────────────
+1. Login as admin
+2. Click "Orders" in sidebar
+3. Should see table with all orders
+4. If no orders, you'll see "No orders found" message
+
+TEST 2: Search Order
+────────────────────
+1. With orders displayed, type customer name in search box
+2. Table filters to show only matching orders
+3. Clear search to see all orders again
+
+TEST 3: Filter by Status
+────────────────────────
+1. Select status from dropdown (e.g., "Pending")
+2. Table shows only orders with that status
+3. Try combining with search for advanced filtering
+
+TEST 4: View Order Details
+──────────────────────────
+1. Click "View" button on any order
+2. Modal opens with complete order information
+3. Verify all details are displayed correctly
+4. Click X or Cancel to close modal
+
+TEST 5: Update Order Status
+────────────────────────────
+1. Click "Edit" button on any order
+2. Modal opens with current status selected
+3. Change status to different option (e.g., "Preparing")
+4. Add a note (e.g., "Started cooking")
+5. Click "Update Status"
+6. Success notification should appear
+7. Close modal and verify status changed in table
+
+═══════════════════════════════════════════════════════════
+
+ORDER STATUSES:
+════════════════
+
+1. PENDING - Order received but not started
+2. PREPARING - Staff is preparing the salad
+3. READY FOR PICKUP - Order ready for customer pickup
+4. OUT FOR DELIVERY - Order is being delivered
+5. COMPLETED - Order completed and delivered
+6. CANCELLED - Order was cancelled
+
+═══════════════════════════════════════════════════════════
+
+TROUBLESHOOTING:
+════════════════
+
+Problem: "No orders found" when there should be orders
+Solution:
+1. Verify orders exist in database:
+   - F12 → Application → localStorage → freshgreens_orders
+2. Check if staff-orders.html properly saves orders
+3. Try clicking "Refresh" button
+4. Check browser console for JavaScript errors
+
+Problem: Can't click buttons or modals don't open
+Solution:
+1. Check console (F12) for JavaScript errors
+2. Verify admin is properly logged in
+3. Hard refresh page: Ctrl+F5
+4. Try logging out and logging back in
+
+Problem: Changes aren't saved when updating status
+Solution:
+1. Verify form is filled correctly
+2. Check console for errors
+3. Verify freshgreens_orders key exists in localStorage
+4. Try hard refresh (Ctrl+F5)
+
+Problem: Can't see all customer information
+Solution:
+1. Verify users are saved in localStorage (freshgreens_users)
+2. Check that orders have userId field
+3. Verify order userId matches a user id in database
+
+═══════════════════════════════════════════════════════════
+
+FUTURE ENHANCEMENTS:
+═════════════════════
+
+Optional features that could be added:
+- Export orders to CSV/PDF
+- Order analytics and statistics
+- Automatic email notifications when status changes
+- Customer feedback/ratings display
+- Bulk operations (update multiple orders at once)
+- Order timeline/history view
+- Print order details
+- Assign staff member to orders
+- Kitchen display system integration
+
+═══════════════════════════════════════════════════════════

@@ -1,0 +1,692 @@
+/* Menu Management Styles */
+
+/* Tabs */
+.menu-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--light-gray);
+    background: white;
+    padding: 0 0 0 0;
+    border-radius: 12px 12px 0 0;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 25px;
+    border: none;
+    background: transparent;
+    color: var(--gray);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form Sections */
+.form-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h2 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.menu-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.nutrition-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--light-gray);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.form-buttons .btn {
+    min-width: 120px;
+}
+
+/* List Sections */
+.list-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.list-section h2 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Items Grid */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.menu-item-card {
+    background: white;
+    border: 2px solid var(--light-gray);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-item-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark);
+    flex: 1;
+    word-break: break-word;
+}
+
+.item-category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--light);
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.item-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 10px 0;
+}
+
+.item-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.item-availability.available {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.item-availability.unavailable {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.item-nutrition {
+    background: var(--light);
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--gray);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.nutrition-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nutrition-label {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.item-actions .btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+}
+
+/* Ingredients Container */
+.ingredients-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ingredient-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.ingredient-row:hover {
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #f8f9fa;
+}
+
+.ingredient-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.ingredient-category-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--light);
+    color: var(--primary);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    min-width: 80px;
+    text-align: center;
+}
+
+.ingredient-details {
+    flex: 1;
+}
+
+.ingredient-name {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+}
+
+.ingredient-price {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.ingredient-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.ingredient-availability.available {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.ingredient-availability.unavailable {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.ingredient-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.ingredient-actions .btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+/* Menu Table */
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.menu-table th {
+    background: var(--light);
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark);
+    border-bottom: 2px solid var(--light-gray);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.menu-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--light-gray);
+    vertical-align: middle;
+}
+
+.menu-table tr:last-child td {
+    border-bottom: none;
+}
+
+.menu-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.table-actions .btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+.modal-content.modal-lg {
+    max-width: 700px;
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+    color: var(--dark);
+    font-size: 1.5rem;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gray);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+}
+
+.close:hover {
+    color: var(--dark);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success Message */
+.success-message {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease;
+}
+
+.success-message i {
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .nutrition-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ingredient-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ingredient-info {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .ingredient-availability,
+    .ingredient-actions {
+        width: 100%;
+        margin: 0;
+    }
+
+    .ingredient-actions {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .list-section {
+        padding: 20px;
+    }
+
+    .items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .menu-item-card {
+        padding: 15px;
+    }
+
+    .nutrition-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .item-actions {
+        flex-direction: column;
+    }
+
+    .item-actions .btn {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+
+    .menu-table {
+        font-size: 0.9rem;
+    }
+
+    .menu-table th,
+    .menu-table td {
+        padding: 10px 12px;
+    }
+
+    .table-actions {
+        flex-direction: column;
+    }
+
+    .table-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        border-bottom: none;
+        border-left: 4px solid transparent;
+        margin: 0;
+    }
+
+    .tab-btn.active {
+        border-bottom: none;
+        border-left-color: var(--primary);
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row,
+    .nutrition-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ingredient-row {
+        padding: 12px 15px;
+    }
+
+    .ingredient-category-badge {
+        min-width: 60px;
+        font-size: 0.7rem;
+    }
+
+    .menu-table {
+        font-size: 0.8rem;
+    }
+
+    .menu-table th,
+    .menu-table td {
+        padding: 8px 10px;
+    }
+}
+
+/* Button Styles Override for Menu */
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1e3910;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--light-gray);
+    color: var(--dark);
+}
+
+.btn-secondary:hover {
+    background: #bbb;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c32020;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--light);
+}

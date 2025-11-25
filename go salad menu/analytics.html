@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - FreshGreens Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="analytics.css">
+</head>
+<body>
+    <!-- Admin Sidebar Navigation -->
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-leaf"></i>
+                <h2>Go Salad Admin</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="admin.html" class="nav-link" data-page="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="admin-orders.html" class="nav-link" data-page="orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                    <li><a href="admin-users.html" class="nav-link" data-page="users"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin-add-menu.html" class="nav-link" data-page="add-menu"><i class="fas fa-plus-circle"></i> Add Menu</a></li>
+                    <li><a href="analytics.html" class="nav-link active" data-page="analytics"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><hr></li>
+                    <li><a href="login.html" class="nav-link" id="adminLogout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <!-- Admin Header -->
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Analytics Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-user-info">
+                        <span id="adminName">Admin</span>
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" alt="Admin" class="admin-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Analytics Content -->
+            <div class="admin-content">
+                <!-- Date Range Filter -->
+                <section class="filters-section">
+                    <div class="filter-group">
+                        <div class="date-filter">
+                            <label for="dateRangeSelect">Date Range:</label>
+                            <select id="dateRangeSelect" class="filter-select">
+                                <option value="7days">Last 7 Days</option>
+                                <option value="30days">Last 30 Days</option>
+                                <option value="90days">Last 90 Days</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                        <button id="refreshAnalyticsBtn" class="btn btn-secondary">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                        <button id="exportReportBtn" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Export Report
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Key Metrics Cards -->
+                <section class="dashboard-stats analytics-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-peso-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Revenue</h3>
+                            <p class="stat-number" id="totalRevenueMetric">₱0</p>
+                            <p class="stat-change" id="revenueChange">-</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Orders</h3>
+                            <p class="stat-number" id="totalOrdersMetric">0</p>
+                            <p class="stat-change" id="ordersChange">-</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Customers</h3>
+                            <p class="stat-number" id="totalCustomersMetric">0</p>
+                            <p class="stat-change" id="customersChange">-</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Avg Order Value</h3>
+                            <p class="stat-number" id="avgOrderValue">₱0</p>
+                            <p class="stat-change" id="avgChange">-</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Row 1 -->
+                <div class="charts-grid">
+                    <!-- Sales Over Time Chart -->
+                    <section class="chart-container chart-lg">
+                        <h2>Sales Over Time</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="salesOverTimeChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- Revenue Breakdown Chart -->
+                    <section class="chart-container">
+                        <h2>Revenue Breakdown</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="revenueBreakdownChart"></canvas>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Charts Row 2 -->
+                <div class="charts-grid">
+                    <!-- Best Selling Products Chart -->
+                    <section class="chart-container chart-lg">
+                        <h2>Best Selling Products</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="bestSellingChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- Order Frequency Chart -->
+                    <section class="chart-container">
+                        <h2>Customer Order Frequency</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="orderFrequencyChart"></canvas>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Charts Row 3 -->
+                <div class="charts-grid">
+                    <!-- Peak Ordering Times Chart -->
+                    <section class="chart-container chart-lg">
+                        <h2>Peak Ordering Times</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="peakTimesChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- Most Used Salad Ingredients Chart -->
+                    <section class="chart-container">
+                        <h2>Top Ingredients Used</h2>
+                        <div class="chart-wrapper">
+                            <canvas id="ingredientsChart"></canvas>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Inventory Alerts Section -->
+                <section class="alerts-section">
+                    <h2>Low Stock Alerts</h2>
+                    <div class="alerts-container" id="lowStockAlerts">
+                        <p class="no-alerts">No low stock alerts</p>
+                    </div>
+                </section>
+
+                <!-- Detailed Tables Row -->
+                <div class="tables-grid">
+                    <!-- Best Selling Products Table -->
+                    <section class="recent-section">
+                        <h2>Top Products</h2>
+                        <div class="table-container">
+                            <table class="analytics-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Units Sold</th>
+                                        <th>Revenue</th>
+                                        <th>Avg Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="topProductsTableBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 20px;">Loading data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Top Customers Table -->
+                    <section class="recent-section">
+                        <h2>Top Customers</h2>
+                        <div class="table-container">
+                            <table class="analytics-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Orders</th>
+                                        <th>Total Spent</th>
+                                        <th>Avg Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="topCustomersTableBody">
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; padding: 20px;">Loading data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Additional Insights -->
+                <div class="insights-grid">
+                    <section class="insight-card">
+                        <h3>Most Popular Ingredient</h3>
+                        <div class="insight-content">
+                            <p class="insight-value" id="popularIngredient">-</p>
+                            <p class="insight-label">Used in <span id="popularIngredientCount">0</span> orders</p>
+                        </div>
+                    </section>
+
+                    <section class="insight-card">
+                        <h3>Peak Order Hour</h3>
+                        <div class="insight-content">
+                            <p class="insight-value" id="peakHour">-</p>
+                            <p class="insight-label" id="peakHourLabel">-</p>
+                        </div>
+                    </section>
+
+                    <section class="insight-card">
+                        <h3>Customer Retention</h3>
+                        <div class="insight-content">
+                            <p class="insight-value" id="retentionRate">0%</p>
+                            <p class="insight-label">Repeat customers</p>
+                        </div>
+                    </section>
+
+                    <section class="insight-card">
+                        <h3>Conversion Rate</h3>
+                        <div class="insight-content">
+                            <p class="insight-value" id="conversionRate">0%</p>
+                            <p class="insight-label">Of total interactions</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="database.js"></script>
+    <script src="admin.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>

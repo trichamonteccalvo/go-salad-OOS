@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard - FreshGreens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="employee.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Go Salad</span>
+                    <span class="staff-badge-nav">Staff</span>
+                </div>
+                <div class="nav-links">
+                    <a href="employee.html" class="active">Dashboard</a>
+                    <a href="staff-orders.html">Orders</a>
+                    <a href="staff-inventory.html">Inventory</a>
+                </div>
+                <div class="nav-actions">
+                    <span id="staffWelcome">Welcome, Staff</span>
+                    <button class="btn btn-outline" id="logoutBtn">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <div class="staff-info">
+                <h1 id="staffName">Kitchen Dashboard</h1>
+                <div class="staff-role" id="staffRole">Staff Portal</div>
+            </div>
+            <div class="staff-actions">
+                <div class="kitchen-timer" id="kitchenTimer">
+                    <i class="fas fa-clock"></i> <span id="currentTime">Loading...</span>
+                </div>
+                <button class="btn btn-primary" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="stat-number" id="pendingOrders">0</div>
+                <div class="stat-label">Pending Orders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-blender"></i>
+                </div>
+                <div class="stat-number" id="preparingOrders">0</div>
+                <div class="stat-label">Preparing</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-number" id="readyOrders">0</div>
+                <div class="stat-label">Ready for Pickup</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-motorcycle"></i>
+                </div>
+                <div class="stat-number" id="deliveryOrders">0</div>
+                <div class="stat-label">Out for Delivery</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-tabs">
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="pending">Pending Orders</button>
+                <button class="tab-btn" data-tab="preparing">In Progress</button>
+                <button class="tab-btn" data-tab="ready">Ready</button>
+                <button class="tab-btn" data-tab="all">All Orders</button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="pending-tab">
+                    <div class="filter-bar">
+                        <select class="filter-select" id="priorityFilter">
+                            <option value="all">All Priorities</option>
+                            <option value="high">High Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="low">Low Priority</option>
+                        </select>
+                        <input type="text" class="search-input" id="searchOrders" placeholder="Search orders...">
+                        <button class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+                    </div>
+                    <div class="orders-grid" id="pendingOrdersList">
+                        <!-- Pending orders will be loaded here -->
+                    </div>
+                </div>
+                <div class="tab-pane" id="preparing-tab">
+                    <div class="orders-grid" id="preparingOrdersList">
+                        <!-- Preparing orders will be loaded here -->
+                    </div>
+                </div>
+                <div class="tab-pane" id="ready-tab">
+                    <div class="orders-grid" id="readyOrdersList">
+                        <!-- Ready orders will be loaded here -->
+                    </div>
+                </div>
+                <div class="tab-pane" id="all-tab">
+                    <div class="orders-grid" id="allOrdersList">
+                        <!-- All orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="employee.js"></script>
+</body>
+</html>

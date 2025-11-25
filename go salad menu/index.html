@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoSalad | Build Your Perfect Healthy Salad</title>
+    <link rel="stylesheet" href="style.css">
+   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+       <div class="container">
+    <nav class="navbar">
+        <div class="logo">
+            <img src="gosalad lgo.png" 
+                 alt="Go Salad Logo" 
+                 style="width:40px; height:auto;">
+            <span>Go Salad</span>
+        </div>
+
+
+                <!-- In the nav-links section -->
+<div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#builder">Build Your Salad</a>
+    <a href="#nutrition">Nutrition</a>
+    <a href="#about">About</a>
+   
+</div>
+
+<!-- In the nav-actions section -->
+<div class="nav-actions">
+    <a href="cart.html" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </a>
+    <button class="btn btn-outline" id="authButton">Sign In</button>
+    <button class="btn btn-primary">Order Now</button>
+</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Build Your Perfect Healthy Salad</h1>
+            <p>Fresh ingredients, endless combinations. Create a nutritious salad tailored to your taste and dietary needs.</p>
+            <button class="btn btn-primary hero-cta">Start Building</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Signature Salads</h2>
+                <p>Chef-crafted salads designed for maximum flavor and nutrition</p>
+            </div>
+            
+            <div class="menu-categories">
+                <button class="category-btn active">All Salads</button>
+                <button class="category-btn">Vegetarian</button>
+                <button class="category-btn">High Protein</button>
+                <button class="category-btn">Low Carb</button>
+                <button class="category-btn">Seasonal Specials</button>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Salad 1 -->
+                <div class="menu-item">
+                    <div class="menu-item-img mediterranean-salad"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Mediterranean Bliss</h3>
+                            <span class="menu-item-price">₱189</span>
+                        </div>
+                        <p class="menu-item-desc">Mixed greens with feta, olives, cucumbers, tomatoes, and lemon herb dressing</p>
+                        <div class="menu-item-tags">
+                            <span class="tag vegan">Vegan</span>
+                            <span class="tag gluten-free">Gluten-Free</span>
+                        </div>
+                        <div class="nutrition-info">
+                            <span class="nutrition-item">450 cal</span>
+                            <span class="nutrition-item">18g protein</span>
+                            <span class="nutrition-item">12g fiber</span>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-id="1" data-name="Mediterranean Bliss" data-price="189">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Salad 2 -->
+                <div class="menu-item">
+                    <div class="menu-item-img protein-bowl"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Protein Power Bowl</h3>
+                            <span class="menu-item-price">₱219</span>
+                        </div>
+                        <p class="menu-item-desc">Grilled chicken, quinoa, black beans, corn, avocado, and cilantro lime dressing</p>
+                        <div class="menu-item-tags">
+                            <span class="tag low-carb">Low Carb</span>
+                            <span class="tag high-protein">High Protein</span>
+                        </div>
+                        <div class="nutrition-info">
+                            <span class="nutrition-item">520 cal</span>
+                            <span class="nutrition-item">32g protein</span>
+                            <span class="nutrition-item">8g fiber</span>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-id="2" data-name="Protein Power Bowl" data-price="219">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Salad 3 -->
+                <div class="menu-item">
+                    <div class="menu-item-img asian-crunch"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Asian Crunch</h3>
+                            <span class="menu-item-price">₱199</span>
+                        </div>
+                        <p class="menu-item-desc">Napa cabbage, carrots, edamame, mandarin oranges, almonds, and ginger sesame dressing</p>
+                        <div class="menu-item-tags">
+                            <span class="tag vegan">Vegan</span>
+                            <span class="tag dairy-free">Dairy-Free</span>
+                        </div>
+                        <div class="nutrition-info">
+                            <span class="nutrition-item">380 cal</span>
+                            <span class="nutrition-item">14g protein</span>
+                            <span class="nutrition-item">10g fiber</span>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-id="3" data-name="Asian Crunch" data-price="199">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Salad 4 -->
+                <div class="menu-item">
+                    <div class="menu-item-img caesar-salad"></div>
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Classic Caesar</h3>
+                            <span class="menu-item-price">₱179</span>
+                        </div>
+                        <p class="menu-item-desc">Crisp romaine, parmesan, croutons, and our signature Caesar dressing</p>
+                        <div class="menu-item-tags">
+                            <span class="tag vegetarian">Vegetarian</span>
+                            <span class="tag classic">Classic</span>
+                        </div>
+                        <div class="nutrition-info">
+                            <span class="nutrition-item">420 cal</span>
+                            <span class="nutrition-item">15g protein</span>
+                            <span class="nutrition-item">6g fiber</span>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-id="4" data-name="Classic Caesar" data-price="179">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Salad Builder -->
+    <section class="section" id="builder">
+        <div class="container">
+            <div class="section-title">
+                <h2>Build Your Own Salad</h2>
+                <p>Customize every ingredient to create your perfect healthy meal</p>
+            </div>
+            
+            <div class="builder-container">
+                <div class="builder-header">
+                    <h2>Create Your Custom Salad</h2>
+                    <p>Follow the steps below to build your perfect salad</p>
+                </div>
+                
+                <div class="builder-content">
+                    <div class="builder-steps">
+                        <div class="builder-step active" data-step="1">1. Choose Base</div>
+                        <div class="builder-step" data-step="2">2. Select Protein</div>
+                        <div class="builder-step" data-step="3">3. Add Veggies</div>
+                        <div class="builder-step" data-step="4">4. Pick Fruits</div>
+                        <div class="builder-step" data-step="5">5. Toppings & Extras</div>
+                        <div class="builder-step" data-step="6">6. Dressing</div>
+                        <div class="builder-step" data-step="7">7. Review</div>
+                    </div>
+                    
+                    <div class="builder-body">
+                        <!-- Step 1: Base -->
+                        <div class="builder-step-content active" id="step-1">
+                            <h3>Select Your Greens</h3>
+                            <p>Choose one or two bases for your salad</p>
+                            
+                            <div class="builder-options" id="base-options">
+                                <div class="builder-option selected" data-id="1" data-type="base">
+                                    <div class="option-img mixed-greens"></div>
+                                    <div class="option-name">Mixed Greens</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="base">
+                                    <div class="option-img spinach"></div>
+                                    <div class="option-name">Spinach</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="base">
+                                    <div class="option-img kale"></div>
+                                    <div class="option-name">Kale</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="base">
+                                    <div class="option-img romaine"></div>
+                                    <div class="option-name">Romaine</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="5" data-type="base">
+                                    <div class="option-img arugula"></div>
+                                    <div class="option-name">Arugula</div>
+                                    <div class="option-details">+₱15</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Protein -->
+                        <div class="builder-step-content" id="step-2">
+                            <h3>Select Your Protein</h3>
+                            <p>Choose one protein source for your salad</p>
+                            
+                            <div class="builder-options" id="protein-options">
+                                <div class="builder-option" data-id="1" data-type="protein">
+                                    <div class="option-img grilled-chicken"></div>
+                                    <div class="option-name">Grilled Chicken</div>
+                                    <div class="option-details">+₱65</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="protein">
+                                    <div class="option-img salmon"></div>
+                                    <div class="option-name">Salmon</div>
+                                    <div class="option-details">+₱85</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="protein">
+                                    <div class="option-img tofu"></div>
+                                    <div class="option-name">Tofu</div>
+                                    <div class="option-details">+₱45</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="protein">
+                                    <div class="option-img chickpeas"></div>
+                                    <div class="option-name">Chickpeas</div>
+                                    <div class="option-details">+₱35</div>
+                                </div>
+                                <div class="builder-option" data-id="5" data-type="protein">
+                                    <div class="option-img boiled-eggs"></div>
+                                    <div class="option-name">Hard-Boiled Eggs</div>
+                                    <div class="option-details">+₱30</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Vegetables -->
+                        <div class="builder-step-content" id="step-3">
+                            <h3>Add Vegetables</h3>
+                            <p>Choose up to 5 vegetables for your salad</p>
+                            
+                            <div class="builder-options" id="vegetable-options">
+                                <div class="builder-option" data-id="1" data-type="vegetable">
+                                    <div class="option-img cucumber"></div>
+                                    <div class="option-name">Cucumber</div>
+                                    <div class="option-details">+₱15</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="vegetable">
+                                    <div class="option-img tomatoes"></div>
+                                    <div class="option-name">Tomatoes</div>
+                                    <div class="option-details">+₱20</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="vegetable">
+                                    <div class="option-img bell-peppers"></div>
+                                    <div class="option-name">Bell Peppers</div>
+                                    <div class="option-details">+₱25</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="vegetable">
+                                    <div class="option-img carrots"></div>
+                                    <div class="option-name">Carrots</div>
+                                    <div class="option-details">+₱15</div>
+                                </div>
+                                <div class="builder-option" data-id="5" data-type="vegetable">
+                                    <div class="option-img broccoli"></div>
+                                    <div class="option-name">Broccoli</div>
+                                    <div class="option-details">+₱20</div>
+                                </div>
+                                <div class="builder-option" data-id="6" data-type="vegetable">
+                                    <div class="option-img red-onion"></div>
+                                    <div class="option-name">Red Onion</div>
+                                    <div class="option-details">+₱12</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Fruits -->
+                        <div class="builder-step-content" id="step-4">
+                            <h3>Pick Fruits</h3>
+                            <p>Choose up to 3 fruits for your salad</p>
+                            
+                            <div class="builder-options" id="fruit-options">
+                                <div class="builder-option" data-id="1" data-type="fruit">
+                                    <div class="option-img apple-slices"></div>
+                                    <div class="option-name">Apple Slices</div>
+                                    <div class="option-details">+₱25</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="fruit">
+                                    <div class="option-img berries"></div>
+                                    <div class="option-name">Berries Mix</div>
+                                    <div class="option-details">+₱40</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="fruit">
+                                    <div class="option-img oranges"></div>
+                                    <div class="option-name">Orange Segments</div>
+                                    <div class="option-details">+₱30</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="fruit">
+                                    <div class="option-img pomegranate"></div>
+                                    <div class="option-name">Pomegranate</div>
+                                    <div class="option-details">+₱35</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5: Toppings -->
+                        <div class="builder-step-content" id="step-5">
+                            <h3>Toppings & Extras</h3>
+                            <p>Choose up to 3 toppings for your salad</p>
+                            
+                            <div class="builder-options" id="topping-options">
+                                <div class="builder-option" data-id="1" data-type="topping">
+                                    <div class="option-img almonds"></div>
+                                    <div class="option-name">Almonds</div>
+                                    <div class="option-details">+₱25</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="topping">
+                                    <div class="option-img sunflower-seeds"></div>
+                                    <div class="option-name">Sunflower Seeds</div>
+                                    <div class="option-details">+₱15</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="topping">
+                                    <div class="option-img feta-cheese"></div>
+                                    <div class="option-name">Feta Cheese</div>
+                                    <div class="option-details">+₱30</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="topping">
+                                    <div class="option-img croutons"></div>
+                                    <div class="option-name">Croutons</div>
+                                    <div class="option-details">+₱15</div>
+                                </div>
+                                <div class="builder-option" data-id="5" data-type="topping">
+                                    <div class="option-img avocado"></div>
+                                    <div class="option-name">Avocado</div>
+                                    <div class="option-details">+₱40</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 6: Dressing -->
+                        <div class="builder-step-content" id="step-6">
+                            <h3>Select Dressing</h3>
+                            <p>Choose one dressing for your salad</p>
+                            
+                            <div class="builder-options" id="dressing-options">
+                                <div class="builder-option" data-id="1" data-type="dressing">
+                                    <div class="option-img lemon-herb"></div>
+                                    <div class="option-name">Lemon Herb Vinaigrette</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="2" data-type="dressing">
+                                    <div class="option-img balsamic"></div>
+                                    <div class="option-name">Balsamic Glaze</div>
+                                    <div class="option-details">Included</div>
+                                </div>
+                                <div class="builder-option" data-id="3" data-type="dressing">
+                                    <div class="option-img ranch"></div>
+                                    <div class="option-name">Greek Yogurt Ranch</div>
+                                    <div class="option-details">+₱10</div>
+                                </div>
+                                <div class="builder-option" data-id="4" data-type="dressing">
+                                    <div class="option-img tahini"></div>
+                                    <div class="option-name">Tahini Dressing</div>
+                                    <div class="option-details">+₱10</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 7: Review -->
+                        <div class="builder-step-content" id="step-7">
+                            <h3>Review Your Salad</h3>
+                            <p>Check your selections and add to cart</p>
+                            
+                            <div class="review-summary">
+                                <div class="review-item">
+                                    <h4>Base</h4>
+                                    <div id="review-base">Mixed Greens</div>
+                                </div>
+                                <div class="review-item">
+                                    <h4>Protein</h4>
+                                    <div id="review-protein">Not selected</div>
+                                </div>
+                                <div class="review-item">
+                                    <h4>Vegetables</h4>
+                                    <div id="review-veggies">Not selected</div>
+                                </div>
+                                <div class="review-item">
+                                    <h4>Fruits</h4>
+                                    <div id="review-fruits">Not selected</div>
+                                </div>
+                                <div class="review-item">
+                                    <h4>Toppings</h4>
+                                    <div id="review-toppings">Not selected</div>
+                                </div>
+                                <div class="review-item">
+                                    <h4>Dressing</h4>
+                                    <div id="review-dressing">Not selected</div>
+                                </div>
+                            </div>
+                            
+                            <div class="nutrition-summary">
+                                <h4>Nutrition Information</h4>
+                                <div class="nutrition-breakdown">
+                                    <div class="nutrition-item">
+                                        <span>Calories:</span>
+                                        <span id="nutrition-calories">15</span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <span>Protein:</span>
+                                        <span id="nutrition-protein">1g</span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <span>Carbs:</span>
+                                        <span id="nutrition-carbs">3g</span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <span>Fat:</span>
+                                        <span id="nutrition-fat">0g</span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <span>Fiber:</span>
+                                        <span id="nutrition-fiber">2g</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" id="add-custom-to-cart">Add Custom Salad to Cart - ₱<span id="custom-salad-price">70</span></button>
+                        </div>
+                        
+                        <div class="builder-navigation">
+                            <button class="btn btn-outline" id="prev-step" disabled>Previous</button>
+                            <button class="btn btn-primary" id="next-step">Next: Select Protein</button>
+                        </div>
+                        
+                        <div class="builder-summary">
+                            <h4>Your Salad Summary</h4>
+                            <div class="summary-item">
+                                <span>Base:</span>
+                                <span id="summary-base">Mixed Greens</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Protein:</span>
+                                <span id="summary-protein">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Veggies:</span>
+                                <span id="summary-veggies">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Fruits:</span>
+                                <span id="summary-fruits">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Toppings:</span>
+                                <span id="summary-toppings">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Dressing:</span>
+                                <span id="summary-dressing">Not selected</span>
+                            </div>
+                            <div class="summary-total">
+                                <span>Total:</span>
+                                <span>₱<span id="summary-total">70</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Section -->
+    <section class="section" id="nutrition">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nutrition Matters</h2>
+                <p>We believe in transparent nutrition information to help you make informed choices</p>
+            </div>
+            
+            <div class="nutrition-grid">
+                <div class="nutrition-card">
+                    <h3>Our Ingredients Promise</h3>
+                    <p>All our ingredients are sourced from local farms whenever possible, ensuring freshness and supporting our community. We never use artificial preservatives or additives.</p>
+                    <ul>
+                        <li>100% fresh, never frozen proteins</li>
+                        <li>Organic greens and vegetables</li>
+                        <li>House-made dressings with natural ingredients</li>
+                        <li>Seasonal and locally sourced produce</li>
+                    </ul>
+                </div>
+                
+                <div class="nutrition-card">
+                    <h3>Dietary Accommodations</h3>
+                    <p>We cater to various dietary needs and preferences with clearly marked options:</p>
+                    <div class="dietary-tags">
+                        <span class="tag vegan">Vegan</span>
+                        <span class="tag vegetarian">Vegetarian</span>
+                        <span class="tag low-carb">Low Carb</span>
+                        <span class="tag gluten-free">Gluten-Free</span>
+                        <span class="tag dairy-free">Dairy-Free</span>
+                        <span class="tag nut-free">Nut-Free</span>
+                    </div>
+                    <p>Have specific allergies or dietary restrictions? Our staff is trained to handle special requests safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track Order is handled on a standalone page: track-order.html -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Go Salad</h3>
+                    <p>Creating healthy, delicious salads made with fresh ingredients for everyone to enjoy.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#builder">Salad Builder</a></li>
+                        <li><a href="#nutrition">Nutrition</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Sto.tomas, Mabini, Batangas</li>
+                        <li><i class="fas fa-phone"></i> 09456379</li>
+                        <li><i class="fas fa-envelope"></i> hello@gosalad.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 10am-9pm</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Subscribe</h3>
+                    <p>Get the latest updates on new salads and special offers.</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Your email">
+                        <button class="btn btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Go Salad. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="database.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+
+   
+
+</body>
+</html>

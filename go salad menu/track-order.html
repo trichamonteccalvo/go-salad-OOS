@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - FreshGreens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="track-order.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-leaf"></i>
+                <a href="index.html">Go Salad</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li class="nav-item"><a href="account.html" class="nav-link"><i class="fas fa-user"></i> Account</a></li>
+                <li class="nav-item"><a href="track-order.html" class="nav-link active"><i class="fas fa-tracking"></i> Track Order</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="track-order-container">
+        <!-- Header Section -->
+        <section class="track-header">
+            <div class="header-content">
+                <h1><i class="fas fa-map-location-dot"></i> Track Your Order</h1>
+                <p>Monitor your fresh salad delivery in real-time</p>
+            </div>
+        </section>
+
+        <!-- Quick Search Section -->
+        <section class="quick-search-section">
+            <div class="search-card">
+                <h2>Enter Your Order Details</h2>
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="orderIdInput">Order ID or Email</label>
+                        <input type="text" id="orderIdInput" placeholder="e.g., ORD1234567890 or your@email.com" class="search-input">
+                    </div>
+                    <button id="searchOrderBtn" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search Order
+                    </button>
+                </div>
+                <div id="searchError" class="error-message"></div>
+            </div>
+        </section>
+
+        <!-- Orders List Section -->
+        <section class="orders-list-section" id="ordersListSection" style="display: none;">
+            <div class="section-title">
+                <h2>Your Orders</h2>
+            </div>
+            <div id="ordersList" class="orders-grid">
+                <!-- Orders will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Selected Order Tracking Section -->
+        <section class="tracking-section" id="trackingSection" style="display: none;">
+            <div class="tracking-content">
+                <!-- Left Column: Map and Details -->
+                <div class="tracking-left">
+                    <!-- Delivery Map -->
+                    <div class="map-container">
+                        <div id="map" class="map-view"></div>
+                        <div class="map-info">
+                            <div class="delivery-location" id="deliveryLocation">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <p class="location-label">Delivery To</p>
+                                    <p class="location-address" id="addressDisplay">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Info Cards -->
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-label">Estimated Time</p>
+                                <p class="card-value" id="estimatedTime">--:--</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-label">Driver</p>
+                                <p class="card-value" id="driverName">Juan Cruz</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-label">Contact Driver</p>
+                                <p class="card-value" id="driverPhone">09234562398</p>
+                                <button class="btn-icon contact-driver-btn" id="contactDriverBtn" aria-label="Contact driver">
+                                    <i class="fas fa-phone-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Details and Timeline -->
+                <div class="tracking-right">
+                    <!-- Order Header -->
+                    <div class="order-header-card">
+                        <div class="order-header-info">
+                            <div>
+                                <p class="order-id">Order <span id="orderId">--</span></p>
+                                <p class="order-time" id="orderTime">--</p>
+                            </div>
+                            <div class="order-total">
+                                <p class="total-amount" id="orderTotal">₱0.00</p>
+                                <p class="total-label">Total</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Timeline -->
+                    <div class="timeline-section">
+                        <h3>Order Status</h3>
+                        <div class="timeline" id="statusTimeline">
+                            <!-- Timeline items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="items-section">
+                        <h3>Order Items</h3>
+                        <div class="items-list" id="itemsList">
+                            <!-- Items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Order Notes -->
+                    <div class="notes-section" id="notesSection" style="display: none;">
+                        <h3>Order Notes</h3>
+                        <div class="notes-content" id="notesContent"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="backBtn" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Orders
+                        </button>
+                        <button id="contactSupportBtn" class="btn btn-outline">
+                            <i class="fas fa-headset"></i> Contact Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- No Order Found Message -->
+        <section class="no-order-section" id="noOrderSection" style="display: none;">
+            <div class="no-order-card">
+                <i class="fas fa-box-open"></i>
+                <h2>No Order Found</h2>
+                <p>We couldn't find any order matching your search.</p>
+                <button id="tryAgainBtn" class="btn btn-primary">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+        </section>
+
+        <!-- Not Logged In Message -->
+        <section class="not-logged-section" id="notLoggedSection" style="display: none;">
+            <div class="not-logged-card">
+                <i class="fas fa-sign-in-alt"></i>
+                <h2>Sign In to Track Your Orders</h2>
+                <p>Please log in to your account to track your order status and delivery.</p>
+                <a href="login.html" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Support Modal -->
+    <div id="supportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contact Support</h2>
+            <div class="modal-body">
+                <p>Need help with your order? We're here to assist!</p>
+                <div class="support-options">
+                    <div class="support-option">
+                        <i class="fas fa-phone-alt"></i>
+                        <p><strong>Call Us</strong></p>
+                        <p>+63 (123) 456-7890</p>
+                    </div>
+                    <div class="support-option">
+                        <i class="fas fa-envelope"></i>
+                        <p><strong>Email Us</strong></p>
+                        <p>support@freshgreens.com</p>
+                    </div>
+                    <div class="support-option">
+                        <i class="fas fa-comments"></i>
+                        <p><strong>Chat with Us</strong></p>
+                        <p>Available 9 AM - 9 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>FreshGreens</h3>
+                <p>Fresh, healthy salads delivered to your doorstep.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                    <li><a href="track-order.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> +63 (123) 456-7890</li>
+                    <li><i class="fas fa-envelope"></i> hello@freshgreens.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sun: 10am-9pm</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FreshGreens. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="database.js"></script>
+    <script src="track-order.js"></script>
+</body>
+</html>

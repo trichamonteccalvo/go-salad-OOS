@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Management - FreshGreens Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="menu-management.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-leaf"></i>
+                <h2>Go Salad Admin</h2>
+            </div>
+
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="admin.html" class="nav-link"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="admin-orders.html" class="nav-link"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                    <li><a href="admin-users.html" class="nav-link"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin-add-menu.html" class="nav-link active"><i class="fas fa-plus-circle"></i> Add Menu</a></li>
+                    <li><a href="analytics.html" class="nav-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><hr></li>
+                    <li><a href="login.html" class="nav-link" id="adminLogout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <h1>Menu Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-user-info">
+                        <span id="adminName">Admin</span>
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=admin" alt="Admin" class="admin-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Tabs for Menu Types -->
+                <div class="menu-tabs">
+                    <button class="tab-btn active" data-tab="premade">
+                        <i class="fas fa-bowl-food"></i> Premade Salads
+                    </button>
+                    <button class="tab-btn" data-tab="ingredients">
+                        <i class="fas fa-leaf"></i> Ingredients
+                    </button>
+                    <button class="tab-btn" data-tab="manage">
+                        <i class="fas fa-cogs"></i> Manage Menu
+                    </button>
+                </div>
+
+                <!-- Premade Salads Tab -->
+                <div id="premade" class="tab-content active">
+                    <div class="form-section">
+                        <h2>Add New Premade Salad</h2>
+                        <form id="addPremadeForm" class="menu-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Salad Name *</label>
+                                    <input type="text" id="premadeName" required placeholder="e.g., Mediterranean Bliss">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price (₱) *</label>
+                                    <input type="number" id="premadePrice" required step="0.01" min="0" placeholder="189">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Description *</label>
+                                <textarea id="premadeDescription" required rows="3" placeholder="Describe the salad ingredients and flavors..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Image URL</label>
+                                    <input type="url" id="premadeImage" placeholder="https://example.com/image.jpg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Availability</label>
+                                    <select id="premadeAvailable">
+                                        <option value="true">Available</option>
+                                        <option value="false">Unavailable</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="nutrition-row">
+                                <div class="form-group">
+                                    <label>Calories</label>
+                                    <input type="number" id="premadeCalories" placeholder="450">
+                                </div>
+                                <div class="form-group">
+                                    <label>Protein (g)</label>
+                                    <input type="number" id="premadeProtein" placeholder="18">
+                                </div>
+                                <div class="form-group">
+                                    <label>Carbs (g)</label>
+                                    <input type="number" id="premadeCarbs" placeholder="35">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fat (g)</label>
+                                    <input type="number" id="premadeFat" placeholder="12">
+                                </div>
+                                <div class="form-group">
+                                    <label>Fiber (g)</label>
+                                    <input type="number" id="premadeFiber" placeholder="12">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tags (comma-separated)</label>
+                                <input type="text" id="premadeTags" placeholder="e.g., vegan, gluten-free, high-protein">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Add Premade Salad
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Premade Salads List -->
+                    <div class="list-section">
+                        <h2>Existing Premade Salads</h2>
+                        <div class="items-grid" id="premadeList">
+                            <p style="text-align: center; padding: 20px; color: var(--gray);">Loading premade salads...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ingredients Tab -->
+                <div id="ingredients" class="tab-content">
+                    <div class="form-section">
+                        <h2>Add New Ingredient</h2>
+                        <form id="addIngredientForm" class="menu-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Ingredient Name *</label>
+                                    <input type="text" id="ingredientName" required placeholder="e.g., Grilled Chicken">
+                                </div>
+                                <div class="form-group">
+                                    <label>Category *</label>
+                                    <select id="ingredientCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="base">Base</option>
+                                        <option value="protein">Protein</option>
+                                        <option value="vegetable">Vegetable</option>
+                                        <option value="fruit">Fruit</option>
+                                        <option value="topping">Topping</option>
+                                        <option value="dressing">Dressing</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Price (₱) *</label>
+                                    <input type="number" id="ingredientPrice" required step="0.01" min="0" placeholder="65">
+                                </div>
+                                <div class="form-group">
+                                    <label>Availability</label>
+                                    <select id="ingredientAvailable">
+                                        <option value="true">Available</option>
+                                        <option value="false">Unavailable</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i> Add Ingredient
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Ingredients List -->
+                    <div class="list-section">
+                        <h2>Existing Ingredients</h2>
+                        <div class="ingredients-container" id="ingredientsList">
+                            <p style="text-align: center; padding: 20px; color: var(--gray);">Loading ingredients...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Menu Tab -->
+                <div id="manage" class="tab-content">
+                    <section class="recent-section">
+                        <h2>All Menu Items</h2>
+                        <div class="table-container">
+                            <table class="menu-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Category</th>
+                                        <th>Price (₱)</th>
+                                        <th>Availability</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="allMenuTableBody">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; padding: 20px;">Loading menu items...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Premade Modal -->
+    <div id="editPremadeModal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close">&times;</span>
+            <h2>Edit Premade Salad</h2>
+            <form id="editPremadeForm" class="menu-form">
+                <input type="hidden" id="editPremadeId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Salad Name *</label>
+                        <input type="text" id="editPremadeName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₱) *</label>
+                        <input type="number" id="editPremadePrice" required step="0.01" min="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description *</label>
+                    <textarea id="editPremadeDescription" required rows="3"></textarea>
+                </div>
+
+                <div class="nutrition-row">
+                    <div class="form-group">
+                        <label>Calories</label>
+                        <input type="number" id="editPremadeCalories">
+                    </div>
+                    <div class="form-group">
+                        <label>Protein (g)</label>
+                        <input type="number" id="editPremadeProtein">
+                    </div>
+                    <div class="form-group">
+                        <label>Carbs (g)</label>
+                        <input type="number" id="editPremadeCarbs">
+                    </div>
+                    <div class="form-group">
+                        <label>Fat (g)</label>
+                        <input type="number" id="editPremadeFat">
+                    </div>
+                    <div class="form-group">
+                        <label>Fiber (g)</label>
+                        <input type="number" id="editPremadeFiber">
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Ingredient Modal -->
+    <div id="editIngredientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Ingredient</h2>
+            <form id="editIngredientForm" class="menu-form">
+                <input type="hidden" id="editIngredientId">
+                
+                <div class="form-group">
+                    <label>Ingredient Name *</label>
+                    <input type="text" id="editIngredientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (₱) *</label>
+                    <input type="number" id="editIngredientPrice" required step="0.01" min="0">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="admin.js"></script>
+    <script src="menu-management.js"></script>
+</body>
+</html>
