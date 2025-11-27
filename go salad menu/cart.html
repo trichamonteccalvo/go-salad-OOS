@@ -197,8 +197,51 @@
             font-weight: 500;
         }
         
-        #gcashInfo input {
-            box-sizing: border-box;
+        .gcash-qr-container {
+            text-align: center;
+            margin: 15px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .gcash-qr-container img {
+            max-width: 200px;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .gcash-qr-container p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .gcash-instructions {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .gcash-instructions h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        
+        .gcash-instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .gcash-instructions li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #555;
         }
 
         @media (max-width: 768px) {
@@ -322,8 +365,21 @@
                 </div>
 
                 <div id="gcashInfo" style="display:none; margin-top:10px;">
-                    <label for="gcashNumber">GCash Number:</label>
-                    <input type="text" id="gcashNumber" placeholder="09XXXXXXXXX" style="width:100%; padding:8px; margin-top:5px;">
+                    <div class="gcash-qr-container">
+                        <img src="qrcode.png" alt="GCash QR Code">
+                        <p>Scan to pay with GCash</p>
+                    </div>
+                    <div class="gcash-instructions">
+                        <h4>How to Pay with GCash:</h4>
+                        <ol>
+                            <li>Open the GCash app on your phone</li>
+                            <li>Tap "Scan QR" from the main menu</li>
+                            <li>Scan the QR code above</li>
+                            <li>Enter the total amount: <strong id="gcashTotalAmount">₱0.00</strong></li>
+                            <li>Add your order number in the description</li>
+                            <li>Complete the payment</li>
+                        </ol>
+                    </div>
                 </div>
 
                 <button class="btn btn-primary checkout-btn" id="checkoutBtn" disabled>
@@ -534,6 +590,7 @@
             document.getElementById('subtotal').textContent = `₱${subtotal.toFixed(2)}`;
             document.getElementById('deliveryFee').textContent = `₱${deliveryFee.toFixed(2)}`;
             document.getElementById('total').textContent = `₱${total.toFixed(2)}`;
+            document.getElementById('gcashTotalAmount').textContent = `₱${total.toFixed(2)}`;
             const estimatedEl = document.getElementById('estimatedDelivery');
             if (estimatedEl) estimatedEl.textContent = estimatedDelivery;
 
@@ -641,12 +698,8 @@
             let paymentDetails = {};
 
             if (selectedPaymentMethod === 'gcash') {
-                const gcashNumber = document.getElementById('gcashNumber').value.trim();
-                if (!gcashNumber || !/^09\d{9}$/.test(gcashNumber)) {
-                    window.showModalNotification('Please enter a valid GCash number (09XXXXXXXXX).', { stayOpen: true });
-                    return;
-                }
-                paymentDetails = { method: 'gcash', number: gcashNumber };
+                // No GCash number validation needed anymore since we're using QR code only
+                paymentDetails = { method: 'gcash' };
             } else {
                 paymentDetails = { method: 'cash' };
             }
