@@ -42,12 +42,12 @@ My website is a **food ordering system focused on salads**. Customers can order 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
+   git clone https://github.com/trichamonteccalvo/go-salad-OOS.git
    ```
 2. Navigate to project folder:
 
    ```bash
-   cd yourproject
+   cd go-salad-OOS
    ```
 3. Open `index.html` in browser or use a live server extension.
 
@@ -62,7 +62,7 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 * List any current bugs or issues here.
 
 ## 📄 License
-Specify your license here (e.g., MIT License).
+© 2025 Go Salad. All rights reserved.
 
 ## 👤 Author
 Montecalvo, Ann Tricha Mhay A.
